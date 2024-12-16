@@ -14,10 +14,13 @@ namespace AVLTree
         public void Add(T value)
         {
             Node<T> current = Root;
-            if(Root == null)
+
+            if (Root == null)
             {
                 Root = new Node<T>(value);
+                return;
             }
+
 
         }
 
