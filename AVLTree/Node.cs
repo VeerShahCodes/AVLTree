@@ -9,13 +9,15 @@ namespace avlTree
     public class Node<T>
         where T : IComparable<T>
     {
-        public Node<T> leftChild;
-        public Node<T> rightChild;
-        public T value;
-        public int height;
+        public Node<T> LeftChild {  get; set; }
+        public Node<T> RightChild { get; set; }
+        public T Value {  get; set; }
+        public int Height { get; set; }
+        public int ChildCount { get; set; }
+        public int Balance { get; set; }
         public Node(T val)
         {
-            value = val;
+            Value = val;
         }
     }
 }

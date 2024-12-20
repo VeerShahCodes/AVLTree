@@ -25,7 +25,7 @@ namespace avlTree
                 return;
             }
 
-            if(value.CompareTo(current.value) < 0)
+            if(value.CompareTo(current.Value) < 0)
             {
                 if(current.leftChild != null)
                 {
