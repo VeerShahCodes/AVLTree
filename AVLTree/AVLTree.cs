@@ -16,14 +16,38 @@ namespace avlTree
         {
 
         }
-        public void Add(T value)
+        public void Add(T value, Node<T> current)
         {
-            Node<T> current = Root;
-
+            
             if (Root == null)
             {
                 Root = new Node<T>(value);
                 return;
+            }
+
+            if(value.CompareTo(current.value) < 0)
+            {
+                if(current.leftChild != null)
+                {
+                    Add(value, current.leftChild);
+                }
+                else
+                {
+                    current.leftChild = new Node<T>(value);
+                    return;
+                }
+            }
+            else
+            {
+                if(current.rightChild != null)
+                {
+                    Add(value, current.rightChild);
+                }
+                else
+                {
+                    current.rightChild = new Node<T>(value);
+                    return;
+                }
             }
 
 
