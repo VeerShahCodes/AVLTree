@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AVLTree
+namespace avlTree
 {
     public class Node<T>
         where T : IComparable<T>

@@ -4,13 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AVLTree
+namespace avlTree
 {
     public class AVLTree<T>
         where T : IComparable<T>
     {
         public Node<T> Root;
         public int balance;
+
+        public AVLTree()
+        {
+
+        }
         public void Add(T value)
         {
             Node<T> current = Root;
