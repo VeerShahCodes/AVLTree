@@ -16,6 +16,18 @@ namespace avlTree
         {
 
         }
+
+        public int UpdateHeight(Node<T> current, Node<T> child1, Node<T> child2)
+        {
+            if (child2 == null)
+            {
+                return child1.Height + 1;
+            }
+            else
+            {
+                return child2.Height + 1;
+            }
+        }
         public void Add(T value, Node<T> current)
         {
             
@@ -34,6 +46,8 @@ namespace avlTree
                 else
                 {
                     current.LeftChild = new Node<T>(value);
+                    current.Height = UpdateHeight(current, current.LeftChild, current.RightChild);
+                    Console.WriteLine(current.Height);
                     return;
                 }
             }
@@ -46,6 +60,8 @@ namespace avlTree
                 else
                 {
                     current.RightChild = new Node<T>(value);
+                    current.Height = UpdateHeight(current, current.RightChild, current.LeftChild);
+                    Console.WriteLine(current.Height);
                     return;
                 }
             }

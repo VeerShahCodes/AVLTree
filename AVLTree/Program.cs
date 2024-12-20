@@ -9,6 +9,7 @@
             avlTree.Add(5, avlTree.Root);
             avlTree.Add(7, avlTree.Root);
             avlTree.Add(6, avlTree.Root);
+           
         }
     }
 }

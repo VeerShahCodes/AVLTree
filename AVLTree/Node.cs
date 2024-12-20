@@ -18,6 +18,7 @@ namespace avlTree
         public Node(T val)
         {
             Value = val;
+            Height = 1;
         }
     }
 }
