@@ -27,25 +27,25 @@ namespace avlTree
 
             if(value.CompareTo(current.Value) < 0)
             {
-                if(current.leftChild != null)
+                if(current.LeftChild != null)
                 {
-                    Add(value, current.leftChild);
+                    Add(value, current.LeftChild);
                 }
                 else
                 {
-                    current.leftChild = new Node<T>(value);
+                    current.LeftChild = new Node<T>(value);
                     return;
                 }
             }
             else
             {
-                if(current.rightChild != null)
+                if(current.RightChild != null)
                 {
-                    Add(value, current.rightChild);
+                    Add(value, current.RightChild);
                 }
                 else
                 {
-                    current.rightChild = new Node<T>(value);
+                    current.RightChild = new Node<T>(value);
                     return;
                 }
             }
