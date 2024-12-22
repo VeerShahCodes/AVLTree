@@ -33,12 +33,13 @@ namespace avlTree
                     current.UpdateHeight();
                     if(current.Balance > 1)
                     {
-
+                        RotateLeft(current);
                     }
                     else if(current.Balance < -1)
                     {
-
+                        RotateRight(current);
                     }
+                    current.UpdateHeight();
                 }
                 else
                 {
@@ -51,6 +52,15 @@ namespace avlTree
                 if(current.RightChild != null)
                 {
                     Add(value, current.RightChild);
+                    current.UpdateHeight();
+                    if (current.Balance > 1)
+                    {
+                        RotateLeft(current);
+                    }
+                    else if (current.Balance < -1)
+                    {
+                        RotateRight(current);
+                    }
                     current.UpdateHeight();
                 }
                 else
@@ -68,7 +78,7 @@ namespace avlTree
 
         }
 
-        public Node<T> RotateLeft(Node<T> current) //return new semi-root
+        public Node<T> RotateLeft(Node<T> current) 
         {
             Node<T> rightChild = current.RightChild;
             Node<T> ogLeftChild = rightChild.LeftChild;
@@ -78,7 +88,7 @@ namespace avlTree
             return rightChild;
         }
 
-        public Node<T> RotateRight(Node<T> current) //return new semi-root
+        public Node<T> RotateRight(Node<T> current) 
         {
             Node<T> leftChild = current.LeftChild;
             Node<T> ogRightChild = leftChild.RightChild;
