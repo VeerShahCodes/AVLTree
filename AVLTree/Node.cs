@@ -14,7 +14,28 @@ namespace avlTree
         public T Value {  get; set; }
         public int Height { get; set; }
         public int ChildCount { get; set; }
-        public int Balance { get; set; }
+        public int Balance
+        {
+            get
+            {
+                if (LeftChild != null && RightChild != null)
+                {
+                    return RightChild.Height - LeftChild.Height;
+                }
+                else if (RightChild == null && LeftChild != null)
+                {
+                    return 0 - LeftChild.Height;
+                }
+                else if (LeftChild == null && RightChild != null)
+                {
+                    return RightChild.Height - 0;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
         public Node(T val)
         {
             Value = val;
@@ -46,8 +67,6 @@ namespace avlTree
             {
                 Height = 1;
             }
-            Console.WriteLine(Value + ": " + Height);
         }
-
     }
 }

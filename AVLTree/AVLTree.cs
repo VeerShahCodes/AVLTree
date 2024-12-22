@@ -10,7 +10,7 @@ namespace avlTree
         where T : IComparable<T>
     {
         public Node<T> Root;
-        public int balance;
+
 
         public AVLTree()
         {
@@ -31,6 +31,14 @@ namespace avlTree
                 {
                     Add(value, current.LeftChild);
                     current.UpdateHeight();
+                    if(current.Balance > 1)
+                    {
+
+                    }
+                    else if(current.Balance < -1)
+                    {
+
+                    }
                 }
                 else
                 {
@@ -59,5 +67,26 @@ namespace avlTree
         {
 
         }
+
+        public Node<T> RotateLeft(Node<T> current) //return new semi-root
+        {
+            Node<T> rightChild = current.RightChild;
+            Node<T> ogLeftChild = rightChild.LeftChild;
+            rightChild.LeftChild = current;
+            current.RightChild = null;
+            current.LeftChild = ogLeftChild;
+            return rightChild;
+        }
+
+        public Node<T> RotateRight(Node<T> current) //return new semi-root
+        {
+            Node<T> leftChild = current.LeftChild;
+            Node<T> ogRightChild = leftChild.RightChild;
+            leftChild.RightChild = current;
+            current.LeftChild = null;
+            current.RightChild = ogRightChild;
+            return leftChild;
+        }
     }
+
 }
