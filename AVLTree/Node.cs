@@ -20,5 +20,34 @@ namespace avlTree
             Value = val;
             Height = 1;
         }
+
+        public void UpdateHeight()
+        { 
+            if(LeftChild != null && RightChild != null)
+            {
+                if(LeftChild.Height.CompareTo(RightChild.Height) > 0)
+                {
+                    Height = LeftChild.Height + 1;
+                }
+                else
+                {
+                    Height = RightChild.Height + 1;
+                }
+            }
+            else if(RightChild != null && LeftChild == null)
+            {
+                Height = RightChild.Height + 1;
+            }
+            else if(LeftChild != null && RightChild == null)
+            {
+                Height = LeftChild.Height + 1;
+            }
+            else
+            {
+                Height = 1;
+            }
+            Console.WriteLine(Value + ": " + Height);
+        }
+
     }
 }
