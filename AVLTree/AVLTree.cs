@@ -54,17 +54,25 @@ namespace avlTree
                 if(current.RightChild != null)
                 {
                     Add(value, current.RightChild);
-                    current.RightChild.UpdateHeight();
+                    current.UpdateHeight();
                     Node<T> returnNode;
-                    if (current.Balance > 1)
+                    if (current.Balance > 1) //height is being calculated incorrectly which is causing this if statement to not be hit when current is 7.
                     {
                         returnNode = RotateLeft(current);
+                        if(returnNode.LeftChild == Root)
+                        {
+                            Root = returnNode;
+                        }
                     }
                     else if (current.Balance < -1)
                     {
                         returnNode = RotateRight(current);
+                        if (returnNode.LeftChild == Root)
+                        {
+                            Root = returnNode;
+                        }
                     }
-                    current.UpdateHeight();
+                    //current.UpdateHeight();
                 }
                 else
                 {
@@ -86,9 +94,11 @@ namespace avlTree
         {
             Node<T> rightChild = current.RightChild;
             Node<T> ogLeftChild = rightChild.LeftChild;
-            rightChild.LeftChild = current;
-            current.RightChild = null;
-            current.LeftChild = ogLeftChild;
+            Node<T> ogCurrent = current;
+            current = rightChild;
+            rightChild.LeftChild = ogCurrent;
+            ogCurrent.RightChild = null;
+            ogCurrent.LeftChild = ogLeftChild;
             return rightChild;
         }
 
@@ -104,7 +114,7 @@ namespace avlTree
 
         public void BreadthFirstTraversal(Node<T> current)
         {
-            Console.WriteLine(current.Value);
+            Console.WriteLine("Value: " + current.Value + ", Height: " + current.Height);
             if(current.LeftChild != null)
             {
                 BreadthFirstTraversal(current.LeftChild);
