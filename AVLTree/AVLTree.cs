@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace avlTree
 {
@@ -16,7 +17,7 @@ namespace avlTree
         {
 
         }
-        public void Add(T value, Node<T> current)
+        public void Add(T value, Node<T> current) //values are getting deleted after rotation
         {
             
             if (Root == null)
@@ -31,13 +32,14 @@ namespace avlTree
                 {
                     Add(value, current.LeftChild);
                     current.UpdateHeight();
-                    if(current.Balance > 1)
+                    Node<T> returnNode;
+                    if (current.Balance > 1)
                     {
-                        RotateLeft(current);
+                        returnNode = RotateLeft(current);
                     }
-                    else if(current.Balance < -1)
+                    else if (current.Balance < -1)
                     {
-                        RotateRight(current);
+                        returnNode = RotateRight(current);
                     }
                     current.UpdateHeight();
                 }
@@ -52,14 +54,15 @@ namespace avlTree
                 if(current.RightChild != null)
                 {
                     Add(value, current.RightChild);
-                    current.UpdateHeight();
+                    current.RightChild.UpdateHeight();
+                    Node<T> returnNode;
                     if (current.Balance > 1)
                     {
-                        RotateLeft(current);
+                        returnNode = RotateLeft(current);
                     }
                     else if (current.Balance < -1)
                     {
-                        RotateRight(current);
+                        returnNode = RotateRight(current);
                     }
                     current.UpdateHeight();
                 }
@@ -78,6 +81,7 @@ namespace avlTree
 
         }
 
+  
         public Node<T> RotateLeft(Node<T> current) 
         {
             Node<T> rightChild = current.RightChild;
@@ -96,6 +100,19 @@ namespace avlTree
             current.LeftChild = null;
             current.RightChild = ogRightChild;
             return leftChild;
+        }
+
+        public void BreadthFirstTraversal(Node<T> current)
+        {
+            Console.WriteLine(current.Value);
+            if(current.LeftChild != null)
+            {
+                BreadthFirstTraversal(current.LeftChild);
+            }
+            if(current.RightChild != null)
+            {
+                BreadthFirstTraversal(current.RightChild);
+            }
         }
     }
 
