@@ -41,6 +41,33 @@ namespace avlTree
 
         public void Delete(T value)
         {
+            if (Root == null) return;
+            Delete(value, Root);
+        }
+
+        private void Delete(T value, Node<T> current)
+        {
+            if (current == null) return;
+            if(value.Equals(current.Value))
+            {
+                if (current.ChildCount == 0) current = null;
+                else if(current.ChildCount == 1)
+                {
+                     if(current.LeftChild != null)
+                     {
+                        current = current.LeftChild;
+                     }
+                     else
+                     {
+                        current = current.RightChild;
+                     }
+
+                }
+                else
+                {
+
+                }
+            }
 
         }
 

@@ -13,7 +13,15 @@ namespace avlTree
         public Node<T> RightChild { get; set; }
         public T Value {  get; set; }
         public int Height { get; set; }
-        public int ChildCount { get; set; }
+        public int ChildCount
+        {
+            get
+            {
+                if (LeftChild != null && RightChild != null) return 2;
+                else if ((LeftChild != null && RightChild == null) || (LeftChild == null && RightChild != null)) return 1;
+                else return 0;
+            }
+        }
         public int Balance
         {
             get

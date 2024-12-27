@@ -15,7 +15,7 @@
                 avlTree.Add(rand);
             }
 
-
+            Console.WriteLine("After:");
             avlTree.BreadthFirstTraversal(avlTree.Root);
         }
     }
