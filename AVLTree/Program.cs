@@ -5,10 +5,16 @@
         static void Main(string[] args)
         {
             AVLTree<int> avlTree = new AVLTree<int>();
-
-            avlTree.Add(30);
-            avlTree.Add(20);
-            avlTree.Add(25);
+            Random random = new Random();
+            List<int> list = new List<int>();
+            for(int i = 0; i < 10; i++)
+            {
+                int val = random.Next(11);
+                Console.WriteLine(val);
+                avlTree.Add(random.Next(11));
+                
+            }
+          
 
            avlTree.DepthFirstTraversal(avlTree.Root);
         }
