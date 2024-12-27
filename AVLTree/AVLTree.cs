@@ -30,7 +30,7 @@ namespace avlTree
             {
                 current.LeftChild = Add(value, current.LeftChild);
             }
-            else if(value.CompareTo(current.Value) > 0)
+            else
             {
                 current.RightChild = Add(value, current.RightChild);
             }
@@ -67,49 +67,80 @@ namespace avlTree
 
             return current;
         }
-        public Node<T> RotateLeft(Node<T> current) 
+        public Node<T> RotateLeft(Node<T> current)
         {
             if (current.RightChild == null)
             {
                 return current;
             }
+
+            // Step 1: Get the new root (right child)
             Node<T> newRoot = current.RightChild;
-            current.RightChild = newRoot.LeftChild; 
-            newRoot.LeftChild = current;
+
+            // Step 2: Perform the rotation
+            current.RightChild = newRoot.LeftChild;  // Move the left child of the new root to the right child of the current node
+            newRoot.LeftChild = current;  // The current node becomes the left child of the new root
+
+            // Step 3: Update the heights of the affected nodes
             current.UpdateHeight();
             newRoot.UpdateHeight();
 
+            // Step 4: Return the new root (which may have become the root of this subtree)
             return newRoot;
         }
 
-        public Node<T> RotateRight(Node<T> current) 
+        public Node<T> RotateRight(Node<T> current)
         {
             if (current.LeftChild == null)
             {
                 return current;
             }
+
+            // Step 1: Get the new root (left child)
             Node<T> newRoot = current.LeftChild;
-            current.LeftChild = newRoot.RightChild;
-            newRoot.RightChild = current;
+
+            // Step 2: Perform the rotation
+            current.LeftChild = newRoot.RightChild;  // Move the right child of the new root to the left child of the current node
+            newRoot.RightChild = current;  // The current node becomes the right child of the new root
+
+            // Step 3: Update the heights of the affected nodes
             current.UpdateHeight();
             newRoot.UpdateHeight();
 
+            // Step 4: Return the new root (which may have become the root of this subtree)
             return newRoot;
         }
 
-        public void DepthFirstTraversal(Node<T> current)
+
+
+        public void BreadthFirstTraversal(Node<T> current)
         {
-            if (current == null) return;
-            Console.WriteLine("Value: " + current.Value + ", Height: " + current.Height);
-            if(current.LeftChild != null)
+            if (current == null)
             {
-                DepthFirstTraversal(current.LeftChild);
+                return;
             }
-            if(current.RightChild != null)
+
+            Queue<Node<T>> queue = new Queue<Node<T>>();
+            queue.Enqueue(current);  
+
+            while (queue.Count > 0)
             {
-                DepthFirstTraversal(current.RightChild);
+                Node<T> node = queue.Dequeue();
+
+                Console.WriteLine("Value: " + node.Value + ", Height: " + node.Height);
+
+                if (node.LeftChild != null)
+                {
+                    queue.Enqueue(node.LeftChild);
+                }
+
+                if (node.RightChild != null)
+                {
+                    queue.Enqueue(node.RightChild);
+                }
             }
         }
+
     }
 
 }

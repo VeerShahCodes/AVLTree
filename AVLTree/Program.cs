@@ -6,17 +6,17 @@
         {
             AVLTree<int> avlTree = new AVLTree<int>();
             Random random = new Random();
-            List<int> list = new List<int>();
+
+            Console.WriteLine("Before:");
             for(int i = 0; i < 10; i++)
             {
-                int val = random.Next(11);
-                Console.WriteLine(val);
-                avlTree.Add(random.Next(11));
-                
+                int rand = random.Next(11);
+                Console.WriteLine(rand);
+                avlTree.Add(rand);
             }
-          
 
-           avlTree.DepthFirstTraversal(avlTree.Root);
+
+            avlTree.BreadthFirstTraversal(avlTree.Root);
         }
     }
 }
