@@ -28,7 +28,7 @@ namespace avlTree
                 }
                 else if (LeftChild == null && RightChild != null)
                 {
-                    return RightChild.Height - 0;
+                    return RightChild.Height;
                 }
                 else
                 {

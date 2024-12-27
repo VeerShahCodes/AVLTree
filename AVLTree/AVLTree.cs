@@ -37,61 +37,6 @@ namespace avlTree
             current.UpdateHeight();
             return Balance(current);
 
-
-            //if(value.CompareTo(current.Value) < 0)
-            //{
-            //    if(current.LeftChild != null)
-            //    {
-            //        Add(value, current.LeftChild);
-            //        current.UpdateHeight();
-            //        Node<T> returnNode;
-            //        if (current.Balance > 1)
-            //        {
-            //            returnNode = RotateLeft(current);
-            //            returnNode.UpdateHeight();
-            //        }
-            //        else if (current.Balance < -1)
-            //        {
-            //            returnNode = RotateRight(current);
-            //            returnNode.UpdateHeight();
-            //        }
-            //        current.UpdateHeight();
-            //    }
-            //    else
-            //    {
-            //        current.LeftChild = new Node<T>(value);
-            //        return;
-            //    }
-            //}
-            //else
-            //{
-            //    if(current.RightChild != null)
-            //    {
-            //        Add(value, current.RightChild);
-            //        current.UpdateHeight();
-            //        Node<T> returnNode;
-            //        if (current.Balance > 1) //height is being calculated incorrectly which is causing this if statement to not be hit when current is 7.
-            //        {
-            //            returnNode = RotateLeft(current);
-            //            if(current == Root) Root = returnNode;
-            //            returnNode.UpdateHeight();
-            //        }
-            //        else if (current.Balance < -1)
-            //        {
-            //            returnNode = RotateRight(current);
-            //            if (current == Root) Root = returnNode;
-            //            returnNode.UpdateHeight();
-            //        }
-            //        current.UpdateHeight();
-            //    }
-            //    else
-            //    {
-            //        current.RightChild = new Node<T>(value);
-            //        return;
-            //    }
-            //}
-
-
         }
 
         public void Delete(T value)
@@ -101,35 +46,40 @@ namespace avlTree
 
         public Node<T> Balance(Node<T> current)
         {
-            if(current.Balance < -1)
+            if (current.Balance < -1) // Right-Heavy case
             {
-                //if(current.LeftChild != null)
-                //{
-                //    if (current.LeftChild.Balance < 0)
-                //    {
-                //        current.LeftChild = RotateLeft(current.LeftChild);
-                //    }
-                //}
+                // Left-Right Case: Left child is right-heavy
+                if (current.LeftChild.Balance > 0)
+                {
+                    // Perform left rotation on the left child (this is the "inner rotation")
+                    current.LeftChild = RotateLeft(current.LeftChild);
+                }
 
+                // Perform right rotation on the current node (this is the "outer rotation")
                 return RotateRight(current);
             }
-            else if(current.Balance > 1)
+            else if (current.Balance > 1) // Left-Heavy case
             {
+                // Right-Left Case: Right child is left-heavy
+                if (current.RightChild.Balance < 0)
+                {
+                    // Perform right rotation on the right child (this is the "inner rotation")
+                    current.RightChild = RotateRight(current.RightChild);
+                }
 
-                //if(current.RightChild != null)
-                //{
-                //    if (current.RightChild.Balance > 0)
-                //    {
-                //        current.RightChild = RotateRight(current.RightChild);
-                //    }
-                //}
-
+                // Perform left rotation on the current node (this is the "outer rotation")
                 return RotateLeft(current);
             }
+
+            // Tree is balanced
             return current;
         }
         public Node<T> RotateLeft(Node<T> current) 
         {
+            if (current.RightChild == null)
+            {
+                return current;
+            }
             Node<T> newRoot = current.RightChild;
             current.RightChild = newRoot.LeftChild; 
             newRoot.LeftChild = current;

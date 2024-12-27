@@ -6,11 +6,10 @@
         {
             AVLTree<int> avlTree = new AVLTree<int>();
 
-            avlTree.Add(5);
-            avlTree.Add(6);
-            avlTree.Add(7);
-            avlTree.Add(8);
-            avlTree.Add(9);
+            avlTree.Add(30);
+            avlTree.Add(20);
+            avlTree.Add(25);
+
            avlTree.DepthFirstTraversal(avlTree.Root);
         }
     }
