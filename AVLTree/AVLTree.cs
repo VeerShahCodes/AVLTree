@@ -74,18 +74,14 @@ namespace avlTree
                 return current;
             }
 
-            // Step 1: Get the new root (right child)
             Node<T> newRoot = current.RightChild;
 
-            // Step 2: Perform the rotation
-            current.RightChild = newRoot.LeftChild;  // Move the left child of the new root to the right child of the current node
-            newRoot.LeftChild = current;  // The current node becomes the left child of the new root
+            current.RightChild = newRoot.LeftChild;  
+            newRoot.LeftChild = current;  
 
-            // Step 3: Update the heights of the affected nodes
             current.UpdateHeight();
             newRoot.UpdateHeight();
 
-            // Step 4: Return the new root (which may have become the root of this subtree)
             return newRoot;
         }
 
@@ -96,18 +92,14 @@ namespace avlTree
                 return current;
             }
 
-            // Step 1: Get the new root (left child)
             Node<T> newRoot = current.LeftChild;
 
-            // Step 2: Perform the rotation
-            current.LeftChild = newRoot.RightChild;  // Move the right child of the new root to the left child of the current node
-            newRoot.RightChild = current;  // The current node becomes the right child of the new root
+            current.LeftChild = newRoot.RightChild;  
+            newRoot.RightChild = current;  
 
-            // Step 3: Update the heights of the affected nodes
             current.UpdateHeight();
             newRoot.UpdateHeight();
 
-            // Step 4: Return the new root (which may have become the root of this subtree)
             return newRoot;
         }
 
