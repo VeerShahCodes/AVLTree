@@ -23,7 +23,6 @@
             avlTree.Delete(6); // Delete a leaf node
             avlTree.Add(4);   // Add left child to 7
 
-            avlTree.BreadthFirstTraversal(avlTree.Root);
         }
     }
 }

@@ -164,33 +164,8 @@ namespace avlTree
 
 
 
-        public void BreadthFirstTraversal(Node<T> current)
-        {
-            if (current == null)
-            {
-                return;
-            }
 
-            Queue<Node<T>> queue = new Queue<Node<T>>();
-            queue.Enqueue(current);  
 
-            while (queue.Count > 0)
-            {
-                Node<T> node = queue.Dequeue();
-
-                Console.WriteLine("Value: " + node.Value + ", Height: " + node.Height);
-
-                if (node.LeftChild != null)
-                {
-                    queue.Enqueue(node.LeftChild);
-                }
-
-                if (node.RightChild != null)
-                {
-                    queue.Enqueue(node.RightChild);
-                }
-            }
-        }
 
     }
 
