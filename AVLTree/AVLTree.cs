@@ -68,6 +68,17 @@ namespace avlTree
 
                 }
             }
+            else
+            {
+                if(value.CompareTo(current.Value) < 0)
+                {
+                    Delete(value, current.LeftChild);
+                }
+                else
+                {
+                    Delete(value, current.RightChild);
+                }
+            }
 
         }
 
