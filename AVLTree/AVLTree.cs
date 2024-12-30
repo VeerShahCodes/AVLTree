@@ -65,7 +65,14 @@ namespace avlTree
                 }
                 else
                 {
-
+                    Node<T> currentNode = current.LeftChild;
+                    while(currentNode.RightChild != null)
+                    {
+                        currentNode = currentNode.RightChild;
+                    }
+                    current = currentNode;
+                    currentNode = null;
+                    
                 }
             }
             else
@@ -73,11 +80,14 @@ namespace avlTree
                 if(value.CompareTo(current.Value) < 0)
                 {
                     Delete(value, current.LeftChild);
+                    
                 }
                 else
                 {
                     Delete(value, current.RightChild);
                 }
+                current.UpdateHeight();
+                Balance(current);
             }
 
         }
