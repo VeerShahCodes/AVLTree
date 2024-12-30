@@ -27,6 +27,9 @@
             Console.WriteLine();
             Console.WriteLine("Post Order Traversal: ");
             avlTree.PostOrderTraversal(avlTree.Root);
+            Console.WriteLine();
+            Console.WriteLine("In Order Traversal: ");
+            avlTree.InOrderTraversal(avlTree.Root);
         }
     }
 }

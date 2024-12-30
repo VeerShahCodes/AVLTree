@@ -186,6 +186,14 @@ namespace avlTree
             current.WriteData();
         }
 
+        public void InOrderTraversal(Node<T> current)
+        {
+            if (current == null) return;
+            InOrderTraversal(current.LeftChild);
+            current.WriteData();
+            InOrderTraversal(current.RightChild);
+        }
+
 
 
 
