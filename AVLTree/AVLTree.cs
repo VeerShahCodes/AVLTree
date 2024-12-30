@@ -41,57 +41,68 @@ namespace avlTree
 
         public void Delete(T value)
         {
-            if (Root == null) return;
-            Delete(value, Root);
+            Root = Delete(value, Root);
         }
 
-        private void Delete(T value, Node<T> current)
+        private Node<T> Delete(T value, Node<T> current)
         {
-            if (current == null) return;
-            if(value.Equals(current.Value))
-            {
-                if (current.ChildCount == 0) current = null;
-                else if(current.ChildCount == 1)
-                {
-                     if(current.LeftChild != null)
-                     {
-                        current = current.LeftChild;
-                     }
-                     else
-                     {
-                        current = current.RightChild;
-                     }
+            if (current == null) return null;
 
-                }
-                else
-                {
-                    Node<T> currentNode = current.LeftChild;
-                    while(currentNode.RightChild != null)
-                    {
-                        currentNode = currentNode.RightChild;
-                    }
-                    current = currentNode;
-                    currentNode = null;
-                    
-                }
+            if (value.CompareTo(current.Value) < 0)
+            {
+                current.LeftChild = Delete(value, current.LeftChild);
+
+            }
+            else if(value.CompareTo(current.Value) > 0)
+            {
+                current.RightChild = Delete(value, current.RightChild);
             }
             else
             {
-                if(value.CompareTo(current.Value) < 0)
+                if (value.Equals(current.Value))
                 {
-                    Delete(value, current.LeftChild);
-                    
+                    if (current.ChildCount == 0)
+                    {
+                        return null;
+                    }
+                    else if (current.ChildCount == 1)
+                    {
+                        if (current.LeftChild != null)
+                        {
+                            return current.LeftChild;
+                        }
+                        else
+                        {
+                            return current.RightChild;
+                        }
+
+                    }
+                    else
+                    {
+                        Node<T> temp = FindMin(current.RightChild);
+                        current.Value = temp.Value; 
+                        current.RightChild = Delete(temp.Value, current.RightChild);
+
+                    }
                 }
-                else
-                {
-                    Delete(value, current.RightChild);
-                }
-                current.UpdateHeight();
-                Balance(current);
             }
+            
+
+ 
+
+            current.UpdateHeight();
+            return Balance(current);
+            
 
         }
-
+        private Node<T> FindMin(Node<T> node)
+        {
+            while (node.LeftChild != null)
+            {
+                node = node.LeftChild;
+            }
+            return node;
+        }
         public Node<T> Balance(Node<T> current)
         {
             if (current.Balance < -1)
