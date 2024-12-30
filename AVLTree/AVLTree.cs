@@ -164,6 +164,30 @@ namespace avlTree
 
 
 
+        public void PreOrderTraversal(Node<T> current)
+        {
+            if (current == null) return;
+            current.WriteData();
+            if(current.LeftChild != null)
+            {
+                PreOrderTraversal(current.LeftChild);
+            }
+            if(current.RightChild != null)
+            {
+                PreOrderTraversal(current.RightChild);
+            }
+        }
+
+        public void PostOrderTraversal(Node<T> current)
+        {
+            if (current == null) return;
+            PostOrderTraversal(current.LeftChild);
+            PostOrderTraversal(current.RightChild);
+            current.WriteData();
+        }
+
+
+
 
 
 

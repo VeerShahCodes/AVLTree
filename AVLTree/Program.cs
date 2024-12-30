@@ -22,7 +22,11 @@
             avlTree.Delete(5); // Delete a node with two children (3 replaces 5)
             avlTree.Delete(6); // Delete a leaf node
             avlTree.Add(4);   // Add left child to 7
-
+            Console.WriteLine("Pre Order Traversal: ");
+            avlTree.PreOrderTraversal(avlTree.Root);
+            Console.WriteLine();
+            Console.WriteLine("Post Order Traversal: ");
+            avlTree.PostOrderTraversal(avlTree.Root);
         }
     }
 }

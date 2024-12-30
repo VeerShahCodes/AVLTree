@@ -76,5 +76,10 @@ namespace avlTree
                 Height = 1;
             }
         }
+
+        public void WriteData()
+        {
+            Console.WriteLine("Value: " + Value + ", Height: " + Height + ", Balance: " + Balance + ", ChildCount: " + ChildCount);
+        }
     }
 }
