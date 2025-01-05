@@ -18,7 +18,12 @@ namespace SortedDoublyLinkedList
         public void Insert(T val)
         {
             Node<T> current = Head;
-            
+            while(current.Next != null && current.Next.Value.CompareTo(current.Value) > 0)
+            {
+                current = current.Next;
+            }
+
+
 
         }
         public void ConnectNodes(Node<T> previous, Node<T> newNode, Node<T> next)
@@ -27,6 +32,16 @@ namespace SortedDoublyLinkedList
             newNode.Previous = previous;
             newNode.Next = next;
             next.Previous = newNode;
+        }
+
+        public void WriteNodes()
+        {
+            Node<T> current = Head;
+            while(current.Next != null)
+            {
+                Console.WriteLine(current.Value);
+                current = current.Next;
+            }
         }
     }
 }
